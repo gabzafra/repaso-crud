@@ -45,6 +45,11 @@ router.get("/delete/:id", (req, res) => {
 })
 
 router.get("/edit/:id", (req, res) => {
+    // let parkArr;
+    // Parks.find().then(parks => {
+    //     parkArr = parks
+    
+    // })
     Coasters.findById(req.params.id).then(coaster => res.render("coasters/edit-coaster",coaster))
 })
 
