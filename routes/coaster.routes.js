@@ -40,13 +40,15 @@ router.get("/:id", (req, res) => {
         });
 })
 
-router.get("/delete/", (req, res) => {
-    console.log(req.query)
+router.get("/delete/:id", (req, res) => {
+    Coasters.findByIdAndRemove(req.params.id).then(()=>res.redirect("/"))
 })
 
-router.get("/edit", (req, res) => res.render("coasters/coaster-details"))
+router.get("/edit/:id", (req, res) => {
+    Coasters.findById(req.params.id).then(coaster => res.render("coasters/edit-coaster",coaster))
+})
 
-router.put("/:id", (req, res) => res.render("coasters/new-coaster"))
+router.post("/edit/:id", (req, res) => res.render("coasters/edit-coaster"))
 
 
 module.exports = router
